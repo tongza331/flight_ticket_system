@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+</head>
+<body>
+    <form action="success" method="POST">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+        Hello {{ user.username }} <br>
+        <button>logout</button>
+        {% else %}
+        You should login or create account first.
+        <p>Have an account? <a href="login">Login here</a>.</p>
+        <p>Don't have an account? <a href="register">Create an account</a>.</p>
+        {% endif %}
+    </form>
+</body>
+</html>
