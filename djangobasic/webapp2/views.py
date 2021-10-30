@@ -4,7 +4,7 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm 
-
+from webapp2.models import *
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -18,6 +18,7 @@ def register_request(request):
 		firstname = request.POST['fname']
 		lastname = request.POST['lname']
 		email = request.POST['email_id']
+		
 		password1 = request.POST['password1']
 		password2 = request.POST['password2']
 		if password1==password2:
