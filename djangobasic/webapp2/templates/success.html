@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
         {% csrf_token %}
         {% if user.is_authenticated %}
         Hello {{ user.username }} <br>
-        <button>logout</button>
+        <button><a href="logout">logout</a></button>
         {% else %}
         You should login or create account first.
         <p>Have an account? <a href="login">Login here</a>.</p>
@@ -19,4 +20,3 @@
         {% endif %}
     </form>
 </body>
-</html>

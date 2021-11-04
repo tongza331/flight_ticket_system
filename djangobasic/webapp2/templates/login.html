@@ -13,6 +13,11 @@
         Password: <input type="password" name="password"><br>
         <input type="submit">
     </form>
+    <div>
+        {% for message in messages %} 
+        <h3> {{message}}</h3>
+        {% endfor %}
+    </div>
     <p>Don't have an account? <a href="register">Create an account</a>.</p>
 </body>
 </html>
