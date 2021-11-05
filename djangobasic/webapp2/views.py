@@ -24,12 +24,16 @@ def success(request):
 def test_index(request):
 	return render(request,'test_index.html')
 
+def showlocation(request):
+	location = Location.objects.all()
+	return render(request,{'location':location})
 
 def search(request):
 	origin = request.POST['origin']
 	destination = request.POST['destination']
 	seatclass = request.POST['seatclass']
 	departdate = request.POST['depart_date']
+	returndate = None
 	trip_type = request.POST['TripType']
 	if request.method=='POST':
 		if(trip_type=='2'):
@@ -41,17 +45,17 @@ def search(request):
 			depart_date=departdate,
 			return_date=return_date
 			)
-			print(origin,destination,trip_type)
-			return render(request,"test_index2.html",{'ticket':ticket})
+			print("2",origin,destination,trip_type)
 		elif(trip_type=='1'):
 			ticket = Ticket.objects.filter(
 				origin__code=origin,
 				destination__code=destination,
 				seat_class=seatclass,
-				depart_date = departdate
+				depart_date = departdate,
+				return_date = returndate
 			)
-			print(origin,destination,trip_type)
-			return render(request,"test_index2.html",{'ticket':ticket})
+			print("1",origin,destination,trip_type)
+	return render(request,"test_index2.html",{'ticket':ticket})
 
 def register_request(request):
 	'''from_class = NewUserForm
