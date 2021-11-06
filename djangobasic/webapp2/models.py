@@ -50,7 +50,7 @@ class Ticket(models.Model):
     class Meta:
         db_table = "ticket"
     def __str__(self):
-        return f"{self.origin},{self.destination}"
+        return f"{self.origin},{self.destination},{self.fid}"
 class Customer(models.Model):
     first_name = models.CharField(max_length=64, blank=True)
     last_name = models.CharField(max_length=64, blank=True)

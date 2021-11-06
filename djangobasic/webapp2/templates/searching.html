@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Flight</title>
+</head>
+<body>
+    <form action="{% url 'review' %}" method="POST">    
+        {% csrf_token %}
+        {% for data in ticket %}
+        <div style="background-color: darkslategrey; color: floralwhite; width: 800px; ">
+                <h3>From: {{data.origin.city_thai}} To: {{data.destination.city_thai}}</h3><br>
+                Flight number: {{data.flightnumber}}<br>
+                Airline: {{data.airline_list}}<br>
+                Depart Date: {{data.depart_date}} , Depart time: {{data.depart_time}} <br>
+                {% if data.return_date != None %}
+                Return Date: {{data.return_date}} ,Return time: {{data.return_time}}<br>
+                <input type="hidden" name="return_date_book" value="{{data.return_date}}">
+                <input type="hidden" name="return_time_book" value="{{data.return_time}}">
+                {% endif %}
+                Amount: {{data.amount}} Bath<br>
+                Seat Class: {{data.seat_class|capfirst}}
+                <div style="top: 100%;">
+                    <input type="hidden" name="origin_book" value="{{data.origin.city_thai}}">
+                    <input type="hidden" name="destination_book" value="{{data.destination.city_thai}}">
+                    <input type="hidden" name="flightnumber_book" value="{{data.flightnumber}}">
+                    <input type="hidden" name="airline_book" value="{{data.airline_list}}">
+                    <input type="hidden" name="depart_date_book" value="{{data.depart_date}}">
+                    <input type="hidden" name="depart_time_book" value="{{data.depart_time}}">
+                    <input type="hidden" name="amount_book" value="{{data.amount}}">
+                    <input type="hidden" name="seat_class_book" value="{{data.seat_class|capfirst}}">
+                    <input type="submit" name="book" value="Book">
+                </div>
+        </div>
+        {% endfor %}
+    </form>
+</body>
+</html>

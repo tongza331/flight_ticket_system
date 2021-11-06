@@ -11,6 +11,7 @@
     <form action="success" method="POST">
         {% csrf_token %}
         {% if user.is_authenticated %}
+        {{ message }}
         Hello {{ user.username }} <br>
         <button><a href="logout">logout</a></button>
         {% else %}

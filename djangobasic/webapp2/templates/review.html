@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Booking</title>
+</head>
+<body>
+    <form action="" method="POST">{% csrf_token %}
+    <h3>Ticket Details:</h3>
+    Origin: {{origin_book}}<br>
+    Destination: {{destination_book}}<br>
+    Flightnumber: {{flightnumber_book}}<br>
+    Depart Date: {{depart_date_book}}<br>
+    Depart Time: {{depart_time_book}}<br>
+    {% if return_date_book != None %}
+        Return Date: {{return_date_book}}<br>
+        Return Time: {{return_time_book}}<br>
+    {% endif %}
+    Amount: {{amount_book}} Bath<br>
+    Seat Class: {{seat_class_book}}<br>
+    </form>
+
+    <form method="POST" action="">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="inputFormRow">
+                    <div class="input-group mb-3">
+                        <input type="text" name="title[]" placeholder="First Name" autocomplete="off">
+                        <input type="text" name="title[]" placeholder="Last Name" autocomplete="off">
+                        <div class="input-group-append">                
+                            <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="newRow"></div>
+                <button id="addRow" type="button" class="btn btn-info">Add Row</button>
+            </div>
+        </div>
+    </form>
+
+    <!--ของหลินยังไม่ต้องทำตรงนี้นะ ลบออกตอนจะทำได้เลย-->
+    <script type="text/javascript">
+        // add row
+        $("#addRow").click(function () {
+            var html = '';
+            html += '<div id="inputFormRow">';
+            html += '<div class="input-group mb-3">';
+            html += '<input type="text" name="title[]" placeholder="First Name" autocomplete="off">';
+            html += '<input type="text" name="title[]" placeholder="Last Name" autocomplete="off">';
+            html += '<div class="input-group-append">';
+            html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
+            html += '</div>';
+            html += '</div>';
+    
+            $('#newRow').append(html);
+        });
+    
+        // remove row
+        $(document).on('click', '#removeRow', function () {
+            $(this).closest('#inputFormRow').remove();
+        });
+    </script>
+
+</body>
+</html>

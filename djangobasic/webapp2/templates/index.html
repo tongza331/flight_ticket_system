@@ -14,7 +14,7 @@
     <a href="success">Access content page</a><br>
     <a href="test_index">จองตั๋ว เที่ยวกัน</a><br>
 
-    <form action="{% url 'search' %}" method="post"> {% csrf_token %}
+    <form action="{% url 'search' %}" method="POST"> {% csrf_token %}
         <input type="radio" name="TripType" value="1" checked>One-way
         <input type="radio" name="TripType" value="2" checked>Round-trip
         <div class="input-row">

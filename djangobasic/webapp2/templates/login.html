@@ -10,14 +10,11 @@
     <form action="login" method="POST">
         {% csrf_token %}
         User Name: <input type="text" name="username"><br>
+        <span style="color: red;"><small>{{message1}}</small></span><br>
         Password: <input type="password" name="password"><br>
+        <span style="color: red;"><small>{{message2}}</small></span><br>
         <input type="submit">
     </form>
-    <div>
-        {% for message in messages %} 
-        <h3> {{message}}</h3>
-        {% endfor %}
-    </div>
     <p>Don't have an account? <a href="register">Create an account</a>.</p>
 </body>
 </html>
